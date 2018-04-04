@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -13,7 +13,7 @@ export class DataProvider {
     result:any;
 
     constructor(public _http: HttpClient) {
-        console.log('Hello DataProvider Provider');
+        // console.log('Hello DataProvider Provider');
     }
 
     getCoins(coins) {
@@ -22,7 +22,13 @@ export class DataProvider {
         coinlist = coins.join();
 
         return this._http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + coinlist + "&tsyms=USD");
-    
     }
 
+    getCoin(coin) {
+        return this._http.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + coin + "&tsyms=USD");
+    }
+
+    getChart(coin) {
+        return this._http.get("https://min-api.cryptocompare.com/data/histoday?fsym=" + coin + "&tsym=USD&limit=30&aggregate=1");
+    }
 }
