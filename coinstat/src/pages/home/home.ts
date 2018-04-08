@@ -4,6 +4,7 @@ import { DataProvider } from '../../providers/data/data';
 import { Storage } from '@ionic/storage';
 import { Chart } from 'chart.js';
 import { LoadingController } from 'ionic-angular';
+import { SearchPage } from '../search/search';
 
 @Component({
     selector: 'page-home',
@@ -74,7 +75,7 @@ export class HomePage {
 
             this._data.getCoin(coin)
                 .subscribe(res => {
-                    console.log(res);
+                    // console.log(res);
                     this.details = res['DISPLAY'][coin]['USD'];
 
                     this.detailToggle[index] = true;
@@ -138,6 +139,10 @@ export class HomePage {
         setTimeout(() => {
             this.refreshCoins();
         }, 300);
+    }
+
+    showSearch() {
+        this.navCtrl.push(SearchPage);
     }
 
 }
